@@ -3,74 +3,75 @@ import project2 from "../assets/projects/project-2.webp";
 import project3 from "../assets/projects/project-3.webp";
 import project4 from "../assets/projects/project-4.webp";
 
-export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications.I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
+export const HERO_CONTENT = `Aspiring Full-Stack Developer (MERN) with experience in building scalable and secure web applications. Skilled in MongoDB, Express.js, React, Node.js, and proficient in Data Structures & Algorithms (C++). A proactive learner with strong problem-solving and analytical abilities, eager to contribute to real-world software development projects.`;
 
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+export const ABOUT_TEXT = `I am Rajan Mandal, a passionate B.Tech Computer Science student at Maulana Abul Kalam Azad University of Technology (MAKAUT) with a CGPA of 7.1, graduating in May 2026. My journey in web development is driven by curiosity and a commitment to continuous learning. I've solved over 100+ DSA problems on LeetCode and 200+ on GeeksforGeeks, which has sharpened my analytical and problem-solving skills. I thrive in building full-stack applications using the MERN stack and love exploring new technologies. I'm a quick learner, adaptable, and enjoy collaborating with teams to deliver high-quality solutions.`;
 
 export const EXPERIENCES = [
   {
+    year: "2024 - Present",
+    role: "B.Tech - Computer Science and Engineering",
+    company: "MAKAUT (Maulana Abul Kalam Azad University of Technology)",
+    description: `Pursuing Bachelor of Technology in Computer Science and Engineering with a CGPA of 7.1. Expected graduation in May 2026. Focused on Web Development, Cloud Computing, and Data Structures & Algorithms.`,
+    technologies: ["C++", "DSA", "MERN Stack", "Cloud Computing"],
+  },
+  {
+    year: "2025",
+    role: "Oracle Cloud Infrastructure Certified Developer",
+    company: "Oracle",
+    description: `Achieved Oracle Cloud Infrastructure 2025 Certified Developer Professional certification. Gained expertise in Oracle Cloud services, application deployment, resource management, and cloud architecture best practices.`,
+    technologies: ["Oracle Cloud", "Docker", "Cloud Architecture", "DevOps"],
+  },
+  {
+    year: "2024",
+    role: "Full Stack Web Development Certification",
+    company: "MERN Stack Training",
+    description: `Completed comprehensive certification in Full Stack Web Development specializing in MERN Stack. Built multiple real-world projects demonstrating proficiency in MongoDB, Express.js, React.js, and Node.js with focus on scalable web applications.`,
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT"],
+  },
+  {
     year: "2023 - Present",
-    role: "Senior Full Stack Developer",
-    company: "Google Inc.",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB"],
-  },
-  {
-    year: "2022 - 2023",
-    role: "Frontend Developer",
-    company: "Adobe",
-    description: `Designed and developed user interfaces for web applications using Next.js and React. Worked closely with backend developers to integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "Vue.js", "mySQL"],
-  },
-  {
-    year: "2021 - 2022",
-    role: "Full Stack Developer",
-    company: "Facebook",
-    description: `Developed and maintained web applications using JavaScript, React.js, and Node.js. Designed and implemented RESTful APIs for data communication. Collaborated with cross-functional teams to deliver high-quality software products on schedule.`,
-    technologies: ["Python", "Svelte", "Three.js", "Postgres"],
-  },
-  {
-    year: "2020 - 2021",
-    role: "Software Engineer",
-    company: "Paypal",
-    description: `Contributed to the development of web applications using JavaScript, React.js, and Node.js. Managed databases and implemented data storage solutions using MongoDB. Worked closely with product managers to prioritize features and enhancements.`,
-    technologies: ["Ruby", "Rails", "PHP", "Sqlite"],
+    role: "Competitive Programming",
+    company: "LeetCode & GeeksforGeeks",
+    description: `Actively solving Data Structures & Algorithms problems to strengthen problem-solving skills. Solved 100+ problems on LeetCode and 200+ on GeeksforGeeks using C++. Focused on optimizing code efficiency and mastering algorithmic thinking.`,
+    technologies: ["C++", "DSA", "Problem Solving", "Algorithms"],
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "E-Commerce Website",
+    title: "Job Portal",
     image: project1,
     description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
+      "A full-stack web application connecting job seekers and recruiters with role-based authentication and secured routes using JWT. Features include job posting, application management, and candidate tracking.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Tailwind CSS"],
+    liveLink: "https://jobportal-frontend-u7cn.onrender.com",
+    github: "https://github.com/RajanKumar5665"
   },
   {
-    title: "Task Management App",
+    title: "MERN Authentication System",
     image: project2,
     description:
-      "An application for managing tasks and projects, with features such as task creation, assignment, and progress tracking.",
-    technologies: ["HTML", "CSS", "Angular", "Firebase"],
+      "A secure authentication platform with OTP-based email verification, password reset, and JWT-based login/logout features. Built with RESTful backend API for seamless integration.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Bcrypt", "Nodemailer"],
+    liveLink: "https://mern-auth-frontend-usmh.onrender.com",
+    github: "https://github.com/RajanKumar5665"
   },
   {
     title: "Portfolio Website",
     image: project3,
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: ["HTML", "CSS", "React", "Bootstrap"],
-  },
-  {
-    title: "Blogging Platform",
-    image: project4,
-    description:
-      "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+      "A modern personal portfolio showcasing projects, skills, and resume with integrated GitHub & LinkedIn links and downloadable resume option. Deployed on Vercel with continuous integration.",
+    technologies: ["React.js", "Tailwind CSS", "Vite", "Vercel"],
+    liveLink: "https://portfolio-rajan-mandal.vercel.app",
+    github: "https://github.com/RajanKumar5665/RajanPortfolio"
   },
 ];
 
 export const CONTACT = {
-  address: "West Bengal, Kolkata, Budge Budge ",
-  phoneNo: "+91 9693 1532 90 ",
+  address: "Kolkata, West Bengal",
+  phoneNo: "+91 9693153290",
   email: "rk4009023@gmail.com",
+  linkedin: "https://www.linkedin.com/in/rajan-mandal-64b426294",
+  github: "https://github.com/RajanKumar5665"
 };
