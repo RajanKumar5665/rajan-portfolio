@@ -2,18 +2,18 @@ import React from "react";
 
 const educationData = [
   {
-    period: "Class 3rd - 10th",
+    period: "Class 3rd - 10th (20012-2019)",
     title: "Hostel Life",
     description:
       "Lived in a hostel, learning independence and discipline during my formative years.",
-    result: "Passed 10th with 67%",
+    result: "Passed 10th with 67% from CBSE Board",
   },
   {
     period: "Class 11th - 12th (2019-2021)",
     title: "Vision Academy, Patna (BSEB/Bihar Board)",
     description:
-      "Studied Science at Vision Academy, Patna. Developed a strong foundation in core subjects and time management skills.",
-    result: "Passed 12th with 74%",
+      "Relocated to Patna to rigorously prepare for JEE Main while simultaneously pursuing board studies at Vision Academy. Balanced the demands of competitive and academic curricula, strengthened my grasp of core scientific concepts, and honed advanced time management and self-discipline skills.",
+    result: "Passed 12th with 74% (BSEB Board) and JEE Main Score: 65        percentile",
   },
   {
     period: "2021 - Present",

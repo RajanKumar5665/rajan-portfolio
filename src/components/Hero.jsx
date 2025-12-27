@@ -112,7 +112,7 @@ const Hero = () => {
               className='flex gap-4 mt-8 flex-wrap justify-center lg:justify-start'
             >
               <motion.a 
-                href="/resume.pdf" 
+                href="/rajanresume.pdf" 
                 target='_blank' 
                 rel='noopener noreferrer' 
                 download 

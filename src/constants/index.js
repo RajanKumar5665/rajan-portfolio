@@ -9,7 +9,7 @@ export const ABOUT_TEXT = `I am Rajan Mandal, a passionate B.Tech Computer Scien
 
 export const EXPERIENCES = [
   {
-    year: "2024 - Present",
+    year: "2025 - Present",
     role: "B.Tech - Computer Science and Engineering",
     company: "MAKAUT (Maulana Abul Kalam Azad University of Technology)",
     description: `Pursuing Bachelor of Technology in Computer Science and Engineering with a CGPA of 7.1. Expected graduation in May 2026. Focused on Web Development, Cloud Computing, and Data Structures & Algorithms.`,
@@ -30,7 +30,7 @@ export const EXPERIENCES = [
     technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT"],
   },
   {
-    year: "2023 - Present",
+    year: "2025 - Present",
     role: "Competitive Programming",
     company: "LeetCode & GeeksforGeeks",
     description: `Actively solving Data Structures & Algorithms problems to strengthen problem-solving skills. Solved 100+ problems on LeetCode and 200+ on GeeksforGeeks using C++. Focused on optimizing code efficiency and mastering algorithmic thinking.`,
@@ -45,7 +45,7 @@ export const PROJECTS = [
     description:
       "A full-stack web application connecting job seekers and recruiters with role-based authentication and secured routes using JWT. Features include job posting, application management, and candidate tracking.",
     technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Tailwind CSS"],
-    liveLink: "https://jobportal-frontend-u7cn.onrender.com",
+    liveLink: "job-portal-six-flax.vercel.app",
     github: "https://github.com/RajanKumar5665"
   },
   {
@@ -67,12 +67,12 @@ export const PROJECTS = [
     github: "https://github.com/RajanKumar5665"
   },
   {
-    title: "Portfolio Website",
+    title: "Ecommerce Website",
     image: project3,
     description:
-      "A modern personal portfolio showcasing projects, skills, and resume with integrated GitHub & LinkedIn links and downloadable resume option. Deployed on Vercel with continuous integration.",
-    technologies: ["React.js", "Tailwind CSS", "Vite", "Vercel"],
-    liveLink: "https://portfolio-rajan-mandal.vercel.app",
+      "A full-featured ecommerce website built with React, Express.js, Node.js, and MongoDB. Includes product catalog, cart, secure authentication, order management, and modern UI with Shadcn and Tailwind CSS. Deployed on Vercel for fast and reliable performance.",
+    technologies: ["React.js", "Tailwind CSS", "Shadcn UI", "Express.js", "Node.js", "mongodb"],
+    liveLink: "https://ecommerce-website-phi.vercel.app",
     github: "https://github.com/RajanKumar5665/RajanPortfolio"
   },
 ];
