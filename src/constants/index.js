@@ -58,6 +58,15 @@ export const PROJECTS = [
     github: "https://github.com/RajanKumar5665"
   },
   {
+    title: "Blog Application",
+    image: project4,
+    description:
+      "A full-stack blogging platform allowing users to create, edit, and view blog posts with image uploads and secure authentication. Features include rich text editor, comment system, and user profiles.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Bcrypt", "Cloudinary", "Tailwind CSS"],
+    liveLink: "https://your-blog-app-link.com",
+    github: "https://github.com/RajanKumar5665"
+  },
+  {
     title: "Portfolio Website",
     image: project3,
     description:

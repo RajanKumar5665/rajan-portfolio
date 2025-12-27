@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { lenisInstance } from '../main';
 import logo from "../assets/raviKumarLogo.webp"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaLinkedin } from "react-icons/fa6";
@@ -22,8 +23,22 @@ const Navbar = () => {
     { href: "#technologies", label: "Skills" },
     { href: "#projects", label: "Projects" },
     { href: "#experience", label: "Experience" },
+    { href: "#education", label: "Education" },
+    { href: "#hobbies", label: "Hobbies" },
     { href: "#contact", label: "Contact" },
   ];
+
+  // Custom scroll handler using Lenis
+  const handleNavClick = (e, href) => {
+    if (href.startsWith('#') && lenisInstance) {
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if (el) {
+        lenisInstance.scrollTo(el, { offset: -60, duration: 1.2 });
+      }
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <motion.nav
@@ -68,6 +83,7 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                onClick={e => handleNavClick(e, link.href)}
               >
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
@@ -124,7 +140,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className="block text-stone-300 hover:text-white py-2 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={e => handleNavClick(e, link.href)}
                   whileHover={{ x: 10 }}
                 >
                   {link.label}

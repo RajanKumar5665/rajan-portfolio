@@ -4,6 +4,8 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Project from "./components/Project";
 import Technologies from "./components/Technologies";
+import Hobbies from "./components/Hobbies";
+import Education from "./components/Education";
 import { motion } from "framer-motion";
 
 function App() {
@@ -54,25 +56,33 @@ function App() {
         </header>
 
         <main>
-          <section aria-label="Hero section" className="scroll-mt-24">
+          <motion.section aria-label="Hero section" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
             <Hero />
-          </section>
+          </motion.section>
 
-          <section id="technologies" aria-label="Technologies" className="scroll-mt-24">
+          <motion.section id="technologies" aria-label="Technologies" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}>
             <Technologies />
-          </section>
+          </motion.section>
 
-          <section id="projects" aria-label="Projects" className="scroll-mt-24">
+          <motion.section id="projects" aria-label="Projects" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}>
             <Project />
-          </section>
+          </motion.section>
 
-          <section id="experience" aria-label="Experience" className="scroll-mt-24">
+          <motion.section id="experience" aria-label="Experience" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}>
             <Experience />
-          </section>
+          </motion.section>
 
-          <section id="contact" aria-label="Contact" className="scroll-mt-24">
+          <motion.section id="education" aria-label="Education" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }}>
+            <Education />
+          </motion.section>
+
+          <motion.section id="hobbies" aria-label="Hobbies" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.5 }}>
+            <Hobbies />
+          </motion.section>
+
+          <motion.section id="contact" aria-label="Contact" className="scroll-mt-24" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.6 }}>
             <Contact />
-          </section>
+          </motion.section>
         </main>
 
         <motion.footer
