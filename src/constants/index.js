@@ -1,11 +1,12 @@
-import project1 from "../assets/projects/project-1.webp";
-import project2 from "../assets/projects/project-2.webp";
-import project3 from "../assets/projects/project-3.webp";
-import project4 from "../assets/projects/project-4.webp";
+import auth from "../assets/projects/auth.png";
+import shopping from "../assets/projects/shopping.png";
+import hiring from "../assets/projects/hiring.png";
+import recipe from "../assets/projects/recipe.png";
 
-export const HERO_CONTENT = `Aspiring Full-Stack Developer (MERN) with experience in building scalable and secure web applications. Skilled in MongoDB, Express.js, React, Node.js, and proficient in Data Structures & Algorithms (C++). A proactive learner with strong problem-solving and analytical abilities, eager to contribute to real-world software development projects.`;
+export const HERO_CONTENT = `Meet Rajan Mandal, a Full-Stack Developer passionate about building scalable web applications and backend systems. Skilled in the MERN stack and Data Structures & Algorithms (C++), he enjoys solving real-world problems through clean and efficient code while continuously learning modern technologies.
+~ ChatGPT`;
 
-export const ABOUT_TEXT = `I am Rajan Mandal, a passionate B.Tech Computer Science student at Maulana Abul Kalam Azad University of Technology (MAKAUT) with a CGPA of 7.1, graduating in May 2026. My journey in web development is driven by curiosity and a commitment to continuous learning. I've solved over 100+ DSA problems on LeetCode and 200+ on GeeksforGeeks, which has sharpened my analytical and problem-solving skills. I thrive in building full-stack applications using the MERN stack and love exploring new technologies. I'm a quick learner, adaptable, and enjoy collaborating with teams to deliver high-quality solutions.`;
+export const ABOUT_TEXT = `Hi, I’m Rajan Mandal — a full-stack developer who enjoys building practical web apps, learning modern tools, and turning ideas into simple, polished products. I work mostly with the MERN stack and C++ for DSA, and I like creating software that feels fast, clean, and easy to use.`;
 
 export const EXPERIENCES = [
   {
@@ -40,40 +41,40 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
   {
-    title: "Job Portal",
-    image: project1,
-    description:
-      "A full-stack web application connecting job seekers and recruiters with role-based authentication and secured routes using JWT. Features include job posting, application management, and candidate tracking.",
-    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Tailwind CSS"],
-    liveLink: "job-portal-six-flax.vercel.app",
-    github: "https://github.com/RajanKumar5665"
-  },
-  {
     title: "MERN Authentication System",
-    image: project2,
+    image: auth,
     description:
-      "A secure authentication platform with OTP-based email verification, password reset, and JWT-based login/logout features. Built with RESTful backend API for seamless integration.",
+      "A secure authentication platform with OTP-based email verification, password reset, and JWT-based login/logout features. Built with a RESTful backend API for seamless integration.",
     technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Bcrypt", "Nodemailer"],
-    liveLink: "https://mern-auth-frontend-usmh.onrender.com",
+    liveLink: "https://mern-authenication-three.vercel.app/",
     github: "https://github.com/RajanKumar5665"
   },
   {
-    title: "Blog Application",
-    image: project4,
+    title: "Shopping Website",
+    image: shopping,
     description:
-      "A full-stack blogging platform allowing users to create, edit, and view blog posts with image uploads and secure authentication. Features include rich text editor, comment system, and user profiles.",
-    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Bcrypt", "Cloudinary", "Tailwind CSS"],
-    liveLink: "https://your-blog-app-link.com",
+      "A full-featured shopping and ecommerce web application. Features include a modular product catalog, custom shopping cart with checkout, secure user accounts, and a responsive administrative dashboard built with Shadcn and Tailwind.",
+    technologies: ["React.js", "Tailwind CSS", "Shadcn UI", "Express.js", "Node.js", "MongoDB", "Redux"],
+    liveLink: "https://shoping-website-theta.vercel.app",
     github: "https://github.com/RajanKumar5665"
   },
   {
-    title: "Ecommerce Website",
-    image: project3,
+    title: "Skill Hire",
+    image: hiring,
     description:
-      "A full-featured ecommerce website built with React, Express.js, Node.js, and MongoDB. Includes product catalog, cart, secure authentication, order management, and modern UI with Shadcn and Tailwind CSS. Deployed on Vercel for fast and reliable performance.",
-    technologies: ["React.js", "Tailwind CSS", "Shadcn UI", "Express.js", "Node.js", "mongodb"],
-    liveLink: "https://ecommerce-website-phi.vercel.app",
-    github: "https://github.com/RajanKumar5665/RajanPortfolio"
+      "A modern freelance and professional hiring portal connecting employers with developers. Features advanced skill-based searching, application status tracking, secure candidate authentication, and job posting.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "Tailwind CSS"],
+    liveLink: "https://skill-h-ire.vercel.app/",
+    github: "https://github.com/RajanKumar5665"
+  },
+  {
+    title: "AI Recipe Generator",
+    image: recipe,
+    description:
+      "An intelligent recipe generation system utilizing the Gemini API. Users input available ingredients, select dietary preferences, and specify complexity to receive customized recipes with step-by-step instructions instantly.",
+    technologies: ["React.js", "Tailwind CSS", "Express.js", "Node.js", "Gemini API", "MongoDB"],
+    liveLink: "https://ai-recipe-genrator-henna.vercel.app/",
+    github: "https://github.com/RajanKumar5665"
   },
 ];
 

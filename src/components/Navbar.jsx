@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { lenisInstance } from '../main';
-import logo from "../assets/raviKumarLogo.webp"
+import profilePic from "../assets/profileimg.png"
 import { motion, AnimatePresence } from "framer-motion"
-import { FaLinkedin } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 
-const Navbar = () => {
+const Navbar = ({ onOpenAbout, onNavigateHomeSection, currentView = "home" }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -19,17 +17,28 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#technologies", label: "Skills" },
+    { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#experience", label: "Experience" },
-    { href: "#education", label: "Education" },
-    { href: "#hobbies", label: "Hobbies" },
     { href: "#contact", label: "Contact" },
   ];
 
   // Custom scroll handler using Lenis
   const handleNavClick = (e, href) => {
+    if (href === '#about') {
+      e.preventDefault();
+      onOpenAbout?.();
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    if (currentView !== 'home') {
+      e.preventDefault();
+      onNavigateHomeSection?.(href);
+      setMobileMenuOpen(false);
+      return;
+    }
+
     if (href.startsWith('#') && lenisInstance) {
       e.preventDefault();
       const el = document.querySelector(href);
@@ -45,86 +54,58 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-black/80 backdrop-blur-md shadow-lg py-3' 
-          : 'bg-transparent py-4 md:py-6'
-      }`}
+      className="fixed top-4 left-0 right-0 z-50 bg-transparent"
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        <div className="flex items-center justify-between">
-          <motion.a
-            href="#home"
-            aria-label="Home"
-            className="flex items-center gap-2 group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.img
-              src={logo}
-              className="rounded-lg"
-              width={48}
-              height={32}
-              alt="Rajan Mandal logo"
-              whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-              transition={{ duration: 0.5 }}
-            />
-            <span className="ml-2 text-xl font-bold tracking-tight bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-white transition-all">
-              Rajan Mandal
-            </span>
-          </motion.a>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-center w-full">
+        <div className={`inline-flex items-center rounded-full border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 ${
+          scrolled ? 'bg-stone-950/85 py-2 px-4 sm:px-6 border-cyan-500/20' : 'bg-stone-900/60 py-2 px-4 sm:px-6'
+        }`}>
+          <div className="flex items-center justify-start gap-5 sm:gap-8">
+            <motion.button
+              type="button"
+              aria-label="Home"
+              className="flex items-center gap-3 group shrink-0 pr-1"
+              onClick={() => onNavigateHomeSection?.('#home')}
+            >
+              <motion.img
+                src={profilePic}
+                className="rounded-full object-cover ring-1 ring-white/10"
+                width={38}
+                height={38}
+                alt="Rajan Mandal"
+              />
+              <span className="hidden sm:block text-[15px] font-extrabold tracking-[-0.03em] text-white group-hover:text-stone-200 transition-all">
+                Rajan Mandal
+              </span>
+            </motion.button>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-stone-300 hover:text-white relative group transition-colors"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={e => handleNavClick(e, link.href)}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
-            ))}
-          </div>
+            <div className="hidden md:flex items-center gap-8 pl-1">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium relative group transition-colors ${currentView === 'about' && link.href === '#about' ? 'text-white' : 'text-stone-300 hover:text-white'}`}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={e => handleNavClick(e, link.href)}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+                </motion.a>
+              ))}
+            </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <motion.a
-              href="https://www.linkedin.com/in/rajan-mandal-64b426294"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="p-2.5 rounded-lg bg-stone-900/50 hover:bg-blue-600 text-stone-300 hover:text-white transition-all"
-              whileHover={{ scale: 1.1, rotate: 5 }}
+            <motion.button
+              className="md:hidden p-2 text-stone-300 hover:text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
             >
-              <FaLinkedin />
-            </motion.a>
-            <motion.a
-              href="https://github.com/RajanKumar5665"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Github"
-              className="p-2.5 rounded-lg bg-stone-900/50 hover:bg-stone-700 text-stone-300 hover:text-white transition-all"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaGithub />
-            </motion.a>
+              {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            </motion.button>
           </div>
-
-          <motion.button
-            className="md:hidden p-2 text-stone-300 hover:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-          >
-            {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-          </motion.button>
         </div>
-      </div>
+        </div>
 
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -132,28 +113,20 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 backdrop-blur-md border-t border-stone-800"
+            className="md:hidden mx-4 mt-3 rounded-3xl bg-[#1b1b1f]/96 backdrop-blur-xl border border-white/10 overflow-hidden"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-5 py-5 space-y-4">
               {navLinks.map((link) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="block text-stone-300 hover:text-white py-2 transition-colors"
+                  className={`block py-2 transition-colors ${currentView === 'about' && link.href === '#about' ? 'text-white' : 'text-stone-300 hover:text-white'}`}
                   onClick={e => handleNavClick(e, link.href)}
                   whileHover={{ x: 10 }}
                 >
                   {link.label}
                 </motion.a>
               ))}
-              <div className="flex items-center gap-3 pt-4 border-t border-stone-800">
-                <a href="https://www.linkedin.com/in/rajan-mandal-64b426294" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-stone-900/50 text-stone-300 hover:text-white">
-                  <FaLinkedin />
-                </a>
-                <a href="https://github.com/RajanKumar5665" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-stone-900/50 text-stone-300 hover:text-white">
-                  <FaGithub />
-                </a>
-              </div>
             </div>
           </motion.div>
         )}

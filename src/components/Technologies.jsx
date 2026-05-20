@@ -8,52 +8,67 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
+import { useState } from "react";
+
 const Technologies = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredIdx, setHoveredIdx] = useState(null);
 
   const technologies = [
     { 
       node: <RiReactjsLine className="text-6xl text-cyan-400" />, 
       label: 'React',
       color: 'from-cyan-400 to-cyan-600',
-      bgColor: 'bg-cyan-500/10',
-      borderColor: 'border-cyan-500/30'
+      bgColor: 'bg-cyan-500/5',
+      borderColor: 'border-cyan-500/20',
+      hoverColor: 'rgba(34, 211, 238, 0.45)',
+      glowColor: 'rgba(34, 211, 238, 0.15)'
     },
     { 
       node: <TbBrandNextjs className="text-6xl text-white" />, 
       label: 'Next.js',
       color: 'from-white to-stone-300',
-      bgColor: 'bg-stone-500/10',
-      borderColor: 'border-stone-500/30'
+      bgColor: 'bg-stone-500/5',
+      borderColor: 'border-stone-500/20',
+      hoverColor: 'rgba(255, 255, 255, 0.45)',
+      glowColor: 'rgba(255, 255, 255, 0.1)'
     },
     { 
       node: <SiMongodb className="text-6xl text-emerald-500" />, 
       label: 'MongoDB',
       color: 'from-emerald-400 to-emerald-600',
-      bgColor: 'bg-emerald-500/10',
-      borderColor: 'border-emerald-500/30'
+      bgColor: 'bg-emerald-500/5',
+      borderColor: 'border-emerald-500/20',
+      hoverColor: 'rgba(52, 211, 153, 0.45)',
+      glowColor: 'rgba(52, 211, 153, 0.15)'
     },
     { 
       node: <DiRedis className="text-6xl text-red-600" />, 
       label: 'Redis',
       color: 'from-red-500 to-red-700',
-      bgColor: 'bg-red-500/10',
-      borderColor: 'border-red-500/30'
+      bgColor: 'bg-red-500/5',
+      borderColor: 'border-red-500/20',
+      hoverColor: 'rgba(248, 113, 113, 0.45)',
+      glowColor: 'rgba(248, 113, 113, 0.15)'
     },
     { 
       node: <FaNodeJs className="text-6xl text-green-500" />, 
       label: 'Node.js',
       color: 'from-green-400 to-green-600',
-      bgColor: 'bg-green-500/10',
-      borderColor: 'border-green-500/30'
+      bgColor: 'bg-green-500/5',
+      borderColor: 'border-green-500/20',
+      hoverColor: 'rgba(74, 222, 128, 0.45)',
+      glowColor: 'rgba(74, 222, 128, 0.15)'
     },
     { 
       node: <BiLogoPostgresql className="text-6xl text-sky-600" />, 
       label: 'PostgreSQL',
       color: 'from-sky-400 to-sky-600',
-      bgColor: 'bg-sky-500/10',
-      borderColor: 'border-sky-500/30'
+      bgColor: 'bg-sky-500/5',
+      borderColor: 'border-sky-500/20',
+      hoverColor: 'rgba(56, 189, 248, 0.45)',
+      glowColor: 'rgba(56, 189, 248, 0.15)'
     },
   ];
 
@@ -120,34 +135,38 @@ const Technologies = () => {
           <motion.div
             key={idx}
             variants={itemVariants}
+            onMouseEnter={() => setHoveredIdx(idx)}
+            onMouseLeave={() => setHoveredIdx(null)}
             whileHover={{ 
-              scale: 1.1, 
-              y: -10,
-              rotate: [0, -5, 5, -5, 0],
+              scale: 1.08, 
+              y: -8,
+            }}
+            style={{
+              borderColor: hoveredIdx === idx ? tech.hoverColor : undefined,
+              boxShadow: hoveredIdx === idx ? `0 10px 30px -10px ${tech.hoverColor.replace('0.45', '0.2')}` : undefined
             }}
             className={`
               group relative flex flex-col items-center justify-center 
               p-6 rounded-2xl border-2 ${tech.borderColor}
               ${tech.bgColor} backdrop-blur-sm
               cursor-pointer transition-all duration-300
-              hover:shadow-2xl hover:shadow-cyan-500/20
             `}
           >
             <motion.div
-              className="absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
               style={{
-                background: `linear-gradient(135deg, ${tech.color.split(' ')[1]}20, ${tech.color.split(' ')[3]}20)`
+                background: `radial-gradient(circle at center, ${tech.glowColor}, transparent 75%)`
               }}
             />
             <div className="relative z-10">
               <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
+                whileHover={{ rotate: 10 }}
+                transition={{ duration: 0.3 }}
               >
                 {tech.node}
               </motion.div>
               <motion.p
-                className="mt-4 text-sm font-semibold text-stone-300 group-hover:text-white transition-colors"
+                className="mt-4 text-sm font-semibold text-stone-300 group-hover:text-white transition-colors text-center"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ delay: idx * 0.1 + 0.3 }}
@@ -156,7 +175,7 @@ const Technologies = () => {
               </motion.p>
             </div>
             <motion.div
-              className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-0 bg-gradient-to-r ${tech.color} rounded-full group-hover:w-full transition-all duration-300`}
+              className={`absolute -bottom-[2px] left-1/2 -translate-x-1/2 h-[3px] w-0 bg-gradient-to-r ${tech.color} rounded-full group-hover:w-full transition-all duration-300`}
             />
           </motion.div>
         ))}

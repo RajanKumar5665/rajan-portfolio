@@ -1,8 +1,10 @@
-import profilePic from "../assets/profileraj.jpg";
-import {HERO_CONTENT} from "../constants"
+import profilePic from "../assets/profileimg.png";
+import { HERO_CONTENT } from "../constants"
 import { motion } from "framer-motion"
 import { HiArrowDown } from "react-icons/hi";
 import { FaDownload, FaPaperPlane } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,123 +31,93 @@ const childVariants = {
 
 const Hero = () => {
   return (
-    <div className='pb-6 lg:mb-28 pt-24 md:pt-32'>
-      <div className='flex flex-wrap lg:flex-row-reverse items-center min-h-[80vh]'>
-        <div className='w-full lg:w-1/2'>
-          <div className='flex justify-center lg:justify-end lg:p-6 relative'>
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-2xl animate-pulse"></div>
-              <motion.img
-                src={profilePic}
-                alt="Rajan Mandal profile"
-                className='relative w-64 h-80 md:w-72 md:h-96 object-cover rounded-3xl border-2 border-stone-700 shadow-2xl'
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                transition={{ duration: 0.3 }}
-              />
+    <div className='pb-10 lg:mb-24 pt-28 md:pt-32'>
+      <div className='flex flex-col lg:flex-row-reverse lg:flex-nowrap items-start lg:items-center gap-14 lg:gap-20 min-h-[80vh]'>
+        <div className='w-full lg:basis-[42%] lg:shrink-0'>
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-[400px]">
               <motion.div
-                className="absolute -bottom-4 -right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ y: -8, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative group cursor-pointer"
               >
-                Available for Work
+                <div className="absolute -inset-1 rounded-[1.85rem] bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 opacity-30 group-hover:opacity-80 blur transition duration-500" />
+                <img
+                  src={profilePic}
+                  alt="Rajan Mandal profile"
+                  className='relative w-full aspect-[4/5] object-cover rounded-[1.75rem] shadow-2xl border border-white/10'
+                />
               </motion.div>
-            </motion.div>
+              <div className="mt-6 flex items-center justify-center gap-6 text-stone-500">
+                <motion.a 
+                  whileHover={{ scale: 1.2, color: "#fff" }}
+                  whileTap={{ scale: 0.95 }}
+                  href="https://www.linkedin.com/in/rajan-mandal-64b426294" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="LinkedIn" 
+                  className="inline-flex items-center justify-center rounded-full p-2 text-xl hover:text-white transition-colors"
+                >
+                  <FaLinkedin />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.2, color: "#fff" }}
+                  whileTap={{ scale: 0.95 }}
+                  href="https://github.com/RajanKumar5665" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="GitHub" 
+                  className="inline-flex items-center justify-center rounded-full p-2 text-xl hover:text-white transition-colors"
+                >
+                  <FaGithub />
+                </motion.a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className='w-full lg:w-1/2'>
+        <div className='w-full lg:basis-[58%] lg:shrink-0'>
           <motion.div
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className='flex flex-col items-center lg:items-start mt-12 lg:mt-0'
+            className='flex flex-col items-start mt-2 lg:mt-0'
           >
-            <motion.div variants={childVariants} className="flex items-center gap-2 mb-4">
-              <motion.span 
-                className="text-sm text-cyan-400 font-semibold"
-                animate={{ opacity: [1, 0.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                👋 Hello, I'm
-              </motion.span>
-            </motion.div>
-
             <motion.h1 
               variants={childVariants} 
-              className='pb-2 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-white via-stone-200 to-stone-400 bg-clip-text text-transparent'
+              className='pb-2 max-w-[12ch] text-5xl md:text-6xl lg:text-7.5xl font-extrabold tracking-tight leading-[0.95] text-white'
             >
-              Rajan Mandal
+              Trust me, I&apos;m a <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">software</span><br className="hidden lg:block" />engineer.
             </motion.h1>
-
-            <motion.div variants={childVariants} className="flex items-center gap-3 my-4">
-              <motion.span 
-                className='bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-2xl md:text-3xl font-bold text-transparent'
-                animate={{ 
-                  backgroundPosition: ["0%", "100%"],
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                Full Stack Developer (MERN)
-              </motion.span>
-            </motion.div>
 
             <motion.p 
               variants={childVariants} 
-              className='my-6 max-w-lg text-base md:text-lg leading-relaxed text-stone-400 text-center lg:text-left'
+              className='mt-8 max-w-[60ch] text-base md:text-lg leading-8 text-stone-400'
             >
               {HERO_CONTENT}
             </motion.p>
 
+            <motion.p
+              variants={childVariants}
+              className="mt-6 text-sm text-stone-500 flex items-center gap-2"
+            >
+              Building Teachyst next-gen LMS <span className="text-cyan-400 animate-pulse">✨</span>
+            </motion.p>
+
             <motion.div 
               variants={childVariants} 
-              className='flex gap-4 mt-8 flex-wrap justify-center lg:justify-start'
+              className='mt-8 flex gap-4 flex-wrap'
             >
               <motion.a 
-                href="/rajanresume.pdf" 
-                target='_blank' 
-                rel='noopener noreferrer' 
-                download 
-                className='group inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-cyan-500/50 transition-all'
-                whileHover={{ scale: 1.05, y: -2 }}
+                href="https://www.discord.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, shadow: "0px 0px 20px rgb(99, 102, 241)" }}
                 whileTap={{ scale: 0.95 }}
+                className='inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6366f1] to-[#4f46e5] px-8 py-3.5 font-semibold text-white transition-all shadow-lg hover:shadow-indigo-500/35 border border-indigo-400/20'
               >
-                <FaDownload className="group-hover:animate-bounce" />
-                Download Resume
-              </motion.a>
-              <motion.a 
-                href="#contact" 
-                className='group inline-flex items-center gap-2 border-2 border-stone-600 hover:border-cyan-500 px-6 py-3 rounded-full text-stone-200 hover:text-white bg-stone-900/50 hover:bg-stone-800/50 transition-all'
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaPaperPlane className="group-hover:translate-x-1 transition-transform" />
-                Contact Me
-              </motion.a>
-            </motion.div>
-
-            <motion.div
-              variants={childVariants}
-              className="mt-12 lg:mt-16"
-            >
-              <motion.a
-                href="#technologies"
-                className="flex flex-col items-center gap-2 text-stone-400 hover:text-cyan-400 transition-colors"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="text-sm">Scroll Down</span>
-                <HiArrowDown className="text-2xl" />
+                <FaPaperPlane />
+                Join Discord
               </motion.a>
             </motion.div>
           </motion.div>
