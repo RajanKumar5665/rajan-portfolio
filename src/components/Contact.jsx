@@ -1,182 +1,150 @@
-import { CONTACT } from "../constants"
+import { CONTACT, RESUME_URL } from "../constants";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaPhone, FaMapMarkerAlt, FaGithub } from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaGithub, FaDownload } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { HiMail } from "react-icons/hi";
+import SectionHeader from "./SectionHeader";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const contactInfo = [
+  const channels = [
     {
-      icon: <FaMapMarkerAlt className="text-2xl" />,
-      label: "Location",
-      value: CONTACT.address,
-      href: null,
-      color: "from-red-500 to-pink-500"
-    },
-    {
-      icon: <FaPhone className="text-2xl" />,
-      label: "Phone",
-      value: CONTACT.phoneNo,
-      href: `tel:${CONTACT.phoneNo.replace(/\s+/g, '')}`,
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      icon: <HiMail className="text-2xl" />,
+      id: "EMAIL",
+      icon: <HiMail className="text-lg text-cyan-400" />,
       label: "Email",
       value: CONTACT.email,
       href: `mailto:${CONTACT.email}`,
-      color: "from-blue-500 to-cyan-500"
-    },
-  ];
-
-  const socialLinks = [
-    {
-      icon: <FaLinkedin />,
-      href: CONTACT.linkedin || "https://www.linkedin.com/in/rajan-mandal-64b426294",
-      label: "LinkedIn",
-      color: "hover:bg-blue-600"
     },
     {
-      icon: <FaGithub />,
-      href: CONTACT.github || "https://github.com/RajanKumar5665",
-      label: "GitHub",
-      color: "hover:bg-stone-700"
+      id: "PHONE",
+      icon: <FaPhone className="text-lg text-cyan-400" />,
+      label: "Phone",
+      value: CONTACT.phoneNo,
+      href: `tel:${CONTACT.phoneNo.replace(/\s+/g, "")}`,
+    },
+    {
+      id: "LOC",
+      icon: <FaMapMarkerAlt className="text-lg text-cyan-400" />,
+      label: "Location",
+      value: CONTACT.address,
+      href: null,
     },
   ];
 
   return (
-    <div className='border-t border-stone-800/50 pb-24 pt-16' ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className="mb-16 text-center"
-      >
-        <motion.span
-          className="inline-block text-cyan-400 font-semibold mb-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-        >
-          Let's Connect
-        </motion.span>
-        <motion.h2
-          className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent mb-4'
-        >
-          Get in Touch
-        </motion.h2>
-        <motion.p
-          className="text-stone-400 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.3 }}
-        >
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-        </motion.p>
-        <motion.div
-          className="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
-          initial={{ width: 0 }}
-          animate={isInView ? { width: 96 } : {}}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        />
-      </motion.div>
+    <div className="border-t border-cyan-500/10 pb-24 pt-16 section-shell" ref={ref}>
+      <SectionHeader
+        number="05"
+        label="// CONTACT_INTERFACE"
+        title="Get in Touch"
+        subtitle="Open for internships, freelance work, and full-time opportunities."
+      />
 
-      <div className='max-w-4xl mx-auto'>
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {contactInfo.map((info, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className={`
-                group relative bg-gradient-to-br from-stone-900/60 to-stone-800/40 
-                backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 
-                hover:border-cyan-500/50 transition-all duration-300
-                text-center cursor-pointer
-              `}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="cyber-card p-6 md:p-8 flex flex-col justify-between min-h-[280px]"
+        >
+          <div>
+            <p className="font-mono text-[0.65rem] text-cyan-400 tracking-widest mb-4">
+              ◈ INIT_CONNECTION
+            </p>
+            <h3 className="font-display text-2xl font-bold text-white leading-tight">
+              Let&apos;s build something together.
+            </h3>
+            <p className="mt-4 font-mono text-[0.72rem] leading-relaxed text-stone-500">
+              I&apos;m always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={`mailto:${CONTACT.email}`} className="cyber-btn justify-center flex-1">
+              <HiMail />
+              SEND_EMAIL
+            </a>
+            <a
+              href={RESUME_URL}
+              download="Rajan_Mandal_Resume.pdf"
+              className="cyber-btn justify-center flex-1 border-stone-600 text-stone-300"
             >
-              <motion.div
-                className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${info.color} mb-4 mx-auto`}
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="text-white">
-                  {info.icon}
-                </div>
-              </motion.div>
-              <h3 className="text-stone-400 text-sm font-semibold mb-2">{info.label}</h3>
-              {info.href ? (
-                <a
-                  href={info.href}
-                  className="text-white hover:text-cyan-400 transition-colors block"
-                >
-                  {info.value}
-                </a>
-              ) : (
-                <p className="text-white">{info.value}</p>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="text-center"
-        >
-          <h3 className="text-xl font-semibold mb-6 text-stone-300">Connect with me</h3>
-          <div className="flex items-center justify-center gap-4">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className={`
-                  p-4 rounded-xl bg-stone-900/50 backdrop-blur-sm 
-                  border border-stone-700/50 text-stone-300 
-                  ${social.color} transition-all duration-300
-                `}
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.7 + index * 0.1 }}
-              >
-                <div className="text-2xl">
-                  {social.icon}
-                </div>
-              </motion.a>
-            ))}
+              <FaDownload />
+              RESUME
+            </a>
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 1 }}
-          className="mt-12 text-center"
-        >
-          <motion.a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-stone-700 hover:border-cyan-500 text-stone-300 hover:text-white bg-stone-900/50 hover:bg-stone-800/50 transition-all"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+        <div className="flex flex-col gap-3">
+          {channels.map((ch, i) => (
+            <motion.div
+              key={ch.id}
+              initial={{ opacity: 0, x: 24 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.15 + i * 0.1 }}
+              className="cyber-card p-4 flex items-center gap-4 group"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-cyan-500/25 bg-cyan-500/5">
+                {ch.icon}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-mono text-[0.6rem] text-stone-600 tracking-widest">
+                  {ch.id}
+                </p>
+                {ch.href ? (
+                  <a
+                    href={ch.href}
+                    className="block mt-0.5 font-mono text-sm text-white truncate group-hover:text-cyan-400 transition-colors"
+                  >
+                    {ch.value}
+                  </a>
+                ) : (
+                  <p className="mt-0.5 font-mono text-sm text-white">{ch.value}</p>
+                )}
+              </div>
+              <span className="font-mono text-[0.6rem] text-stone-700 group-hover:text-cyan-500/50">
+                →
+              </span>
+            </motion.div>
+          ))}
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.5 }}
+            className="cyber-card p-4"
           >
-            View My Projects
-          </motion.a>
-        </motion.div>
+            <p className="font-mono text-[0.6rem] text-stone-600 tracking-widest mb-3">
+              SOCIAL_LINKS
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                href={CONTACT.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 border border-cyan-500/15 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all font-mono text-xs text-stone-400 hover:text-cyan-400"
+              >
+                <FaLinkedin className="text-lg" />
+                LinkedIn
+              </a>
+              <a
+                href={CONTACT.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 border border-cyan-500/15 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all font-mono text-xs text-stone-400 hover:text-cyan-400"
+              >
+                <FaGithub className="text-lg" />
+                GitHub
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

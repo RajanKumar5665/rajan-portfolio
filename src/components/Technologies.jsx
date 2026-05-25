@@ -1,187 +1,283 @@
-import { RiReactjsLine } from "react-icons/ri";
-import { TbBrandNextjs } from "react-icons/tb";
-import { SiMongodb } from "react-icons/si";
-import { DiRedis } from "react-icons/di";
-import { FaNodeJs } from "react-icons/fa";
-import { BiLogoPostgresql } from "react-icons/bi";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 
-import { useState } from "react";
+const SKILL_COLUMNS = [
+  {
+    id: "frontend",
+    dir: "FRONTEND.DIR/",
+    title: "FRONTEND",
+    skills: [
+      { name: "React", level: 92 },
+      { name: "Next.js", level: 85 },
+      { name: "TypeScript", level: 80 },
+      { name: "TailwindCSS", level: 95 },
+      { name: "Redux / Zustand", level: 78 },
+    ],
+  },
+  {
+    id: "backend",
+    dir: "BACKEND.DIR/",
+    title: "BACKEND",
+    skills: [
+      { name: "Node.js", level: 90 },
+      { name: "Express", level: 92 },
+      { name: "MongoDB", level: 88 },
+      { name: "REST / JWT Auth", level: 96 },
+      { name: "Socket.io", level: 75 },
+    ],
+  },
+  {
+    id: "tools",
+    dir: "TOOLS.DIR/",
+    title: "TOOLS",
+    skills: [
+      { name: "Git / GitHub", level: 90 },
+      { name: "Docker", level: 65 },
+      { name: "Vercel / Render", level: 85 },
+      { name: "Postman", level: 92 },
+      { name: "Linux / Bash", level: 78 },
+    ],
+  },
+];
+
+const SYSTEM_DESIGN_SKILLS = [
+  { name: "Scalability", level: 82 },
+  { name: "Load Balancing", level: 78 },
+  { name: "Microservices", level: 76 },
+  { name: "Caching (Redis)", level: 80 },
+  { name: "Database Design", level: 84 },
+  { name: "Message Queues", level: 72 },
+];
+
+const MARQUEE_TAGS = [
+  "REACT",
+  "NODE.JS",
+  "MONGODB",
+  "MONGOOSE",
+  "REDIS",
+  "GRAPHQL",
+  "REST",
+  "JWT",
+  "SOCKET.IO",
+  "NEXT.JS",
+  "TAILWINDCSS",
+  "VITE",
+  "DOCKER",
+  "GIT",
+  "LINUX",
+  "SYSTEM DESIGN",
+];
+
+const TITLE_TEXT = "SKILLS";
+
+const columnVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.12 + i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+function SkillRow({ name, level, index, isInView, variant = "default" }) {
+  return (
+    <motion.div
+      className={`skills-row ${variant === "compact" ? "skills-row--compact" : ""}`}
+      initial={{ opacity: 0, x: -10 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: 0.2 + index * 0.05, duration: 0.35 }}
+    >
+      <span className="skills-row-name">{name}</span>
+      <div className="skills-row-bar-wrap">
+        <div className="skills-bar-track">
+          <motion.div
+            className="skills-bar-fill"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: `${level}%` } : {}}
+            transition={{
+              delay: 0.3 + index * 0.06,
+              duration: 0.85,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          />
+        </div>
+        <motion.span
+          className="skills-row-pct"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.45 + index * 0.06 }}
+        >
+          {level}%
+        </motion.span>
+      </div>
+    </motion.div>
+  );
+}
+
+function SkillColumn({ column, columnIndex, isInView }) {
+  const count = column.skills.length;
+
+  return (
+    <motion.div
+      className="skills-column"
+      custom={columnIndex}
+      variants={columnVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
+      <div className="skills-column-head">
+        <span className="skills-dir">{column.dir}</span>
+        <span className="skills-entries">
+          {count} ENTRIES
+        </span>
+      </div>
+      <h3 className="skills-column-title">{column.title}</h3>
+      <div className="skills-column-body">
+        {column.skills.map((skill, i) => (
+          <SkillRow
+            key={skill.name}
+            name={skill.name}
+            level={skill.level}
+            index={columnIndex * 8 + i}
+            isInView={isInView}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
 
 const Technologies = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredIdx, setHoveredIdx] = useState(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [typedTitle, setTypedTitle] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
 
-  const technologies = [
-    { 
-      node: <RiReactjsLine className="text-6xl text-cyan-400" />, 
-      label: 'React',
-      color: 'from-cyan-400 to-cyan-600',
-      bgColor: 'bg-cyan-500/5',
-      borderColor: 'border-cyan-500/20',
-      hoverColor: 'rgba(34, 211, 238, 0.45)',
-      glowColor: 'rgba(34, 211, 238, 0.15)'
-    },
-    { 
-      node: <TbBrandNextjs className="text-6xl text-white" />, 
-      label: 'Next.js',
-      color: 'from-white to-stone-300',
-      bgColor: 'bg-stone-500/5',
-      borderColor: 'border-stone-500/20',
-      hoverColor: 'rgba(255, 255, 255, 0.45)',
-      glowColor: 'rgba(255, 255, 255, 0.1)'
-    },
-    { 
-      node: <SiMongodb className="text-6xl text-emerald-500" />, 
-      label: 'MongoDB',
-      color: 'from-emerald-400 to-emerald-600',
-      bgColor: 'bg-emerald-500/5',
-      borderColor: 'border-emerald-500/20',
-      hoverColor: 'rgba(52, 211, 153, 0.45)',
-      glowColor: 'rgba(52, 211, 153, 0.15)'
-    },
-    { 
-      node: <DiRedis className="text-6xl text-red-600" />, 
-      label: 'Redis',
-      color: 'from-red-500 to-red-700',
-      bgColor: 'bg-red-500/5',
-      borderColor: 'border-red-500/20',
-      hoverColor: 'rgba(248, 113, 113, 0.45)',
-      glowColor: 'rgba(248, 113, 113, 0.15)'
-    },
-    { 
-      node: <FaNodeJs className="text-6xl text-green-500" />, 
-      label: 'Node.js',
-      color: 'from-green-400 to-green-600',
-      bgColor: 'bg-green-500/5',
-      borderColor: 'border-green-500/20',
-      hoverColor: 'rgba(74, 222, 128, 0.45)',
-      glowColor: 'rgba(74, 222, 128, 0.15)'
-    },
-    { 
-      node: <BiLogoPostgresql className="text-6xl text-sky-600" />, 
-      label: 'PostgreSQL',
-      color: 'from-sky-400 to-sky-600',
-      bgColor: 'bg-sky-500/5',
-      borderColor: 'border-sky-500/20',
-      hoverColor: 'rgba(56, 189, 248, 0.45)',
-      glowColor: 'rgba(56, 189, 248, 0.15)'
-    },
-  ];
+  useEffect(() => {
+    if (!isInView) return;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
+    let i = 0;
+    const typeInterval = setInterval(() => {
+      if (i <= TITLE_TEXT.length) {
+        setTypedTitle(TITLE_TEXT.slice(0, i));
+        i++;
+      } else {
+        clearInterval(typeInterval);
       }
-    }
-  };
+    }, 85);
 
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.5, y: 50 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10
-      }
-    }
-  };
+    return () => clearInterval(typeInterval);
+  }, [isInView]);
+
+  useEffect(() => {
+    const id = setInterval(() => setShowCursor((c) => !c), 520);
+    return () => clearInterval(id);
+  }, []);
+
+  const marqueeItems = [...MARQUEE_TAGS, ...MARQUEE_TAGS];
 
   return (
-    <div className='pb-24' ref={ref}>
+    <div className="pb-24 pt-8 skills-section" ref={ref}>
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className='mb-20 text-center'
+        className="skills-top-meta"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.45 }}
       >
-        <motion.span
-          className="inline-block text-cyan-400 font-semibold mb-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-        >
-          Skills & Technologies
-        </motion.span>
-        <motion.h2
-          className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent'
-        >
-          Technologies I Work With
-        </motion.h2>
-        <motion.div
-          className="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
-          initial={{ width: 0 }}
-          animate={isInView ? { width: 96 } : {}}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        />
+        <span className="skills-meta-left">
+          <span className="skills-meta-accent">/ 02 /</span>
+          <span className="skills-meta-slash"> // </span>
+          SYSTEM_DIAGNOSTICS
+        </span>
+        <span className="skills-meta-right">
+          <span>SECTION.02</span>
+          <span className="skills-scroll-hint">// SCROLL FOR MORE ↓</span>
+        </span>
       </motion.div>
 
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8'
+        className="skills-title-wrap"
+        initial={{ opacity: 0, y: 16 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.45, delay: 0.08 }}
       >
-        {technologies.map((tech, idx) => (
-          <motion.div
-            key={idx}
-            variants={itemVariants}
-            onMouseEnter={() => setHoveredIdx(idx)}
-            onMouseLeave={() => setHoveredIdx(null)}
-            whileHover={{ 
-              scale: 1.08, 
-              y: -8,
-            }}
-            style={{
-              borderColor: hoveredIdx === idx ? tech.hoverColor : undefined,
-              boxShadow: hoveredIdx === idx ? `0 10px 30px -10px ${tech.hoverColor.replace('0.45', '0.2')}` : undefined
-            }}
-            className={`
-              group relative flex flex-col items-center justify-center 
-              p-6 rounded-2xl border-2 ${tech.borderColor}
-              ${tech.bgColor} backdrop-blur-sm
-              cursor-pointer transition-all duration-300
-            `}
+        <div className="display-heading-block">
+          <h2
+            className="display-heading display-heading--section display-heading--uppercase"
+            aria-label="Skills"
           >
-            <motion.div
-              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={{
-                background: `radial-gradient(circle at center, ${tech.glowColor}, transparent 75%)`
-              }}
-            />
-            <div className="relative z-10">
-              <motion.div
-                whileHover={{ rotate: 10 }}
-                transition={{ duration: 0.3 }}
-              >
-                {tech.node}
-              </motion.div>
-              <motion.p
-                className="mt-4 text-sm font-semibold text-stone-300 group-hover:text-white transition-colors text-center"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: idx * 0.1 + 0.3 }}
-              >
-                {tech.label}
-              </motion.p>
-            </div>
-            <motion.div
-              className={`absolute -bottom-[2px] left-1/2 -translate-x-1/2 h-[3px] w-0 bg-gradient-to-r ${tech.color} rounded-full group-hover:w-full transition-all duration-300`}
-            />
-          </motion.div>
-        ))}
+            {typedTitle}
+            <span
+              className="display-heading-cursor"
+              style={{ opacity: showCursor ? 1 : 0 }}
+              aria-hidden
+            >
+              _
+            </span>
+          </h2>
+        </div>
+        <div className="section-title-rule" aria-hidden>
+          <span className="section-title-rule-glow" />
+          <span className="section-title-rule-line" />
+        </div>
       </motion.div>
+
+      <div className="skills-columns">
+        {SKILL_COLUMNS.map((col, i) => (
+          <SkillColumn
+            key={col.id}
+            column={col}
+            columnIndex={i}
+            isInView={isInView}
+          />
+        ))}
+      </div>
+
+      {/* System Design */}
+      <motion.section
+        id="system-design"
+        aria-label="System Design skills"
+        className="skills-sys-panel scroll-mt-28"
+        initial={{ opacity: 0, y: 24 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.5 }}
+      >
+        <div className="skills-sys-panel-inner cyber-card">
+          <div className="skills-column-head">
+            <span className="skills-dir">SYSTEM_DESIGN.DIR/</span>
+            <span className="skills-entries">{SYSTEM_DESIGN_SKILLS.length} ENTRIES</span>
+          </div>
+          <h3 className="skills-column-title">SYSTEM DESIGN</h3>
+          <p className="skills-sys-desc">
+            // Scalability, architecture patterns & distributed systems fundamentals
+          </p>
+          <div className="skills-sys-grid">
+            {SYSTEM_DESIGN_SKILLS.map((skill, i) => (
+              <SkillRow
+                key={skill.name}
+                name={skill.name}
+                level={skill.level}
+                index={24 + i}
+                isInView={isInView}
+              />
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <div className="skills-marquee-wrap" aria-hidden>
+        <div className="skills-marquee-fade skills-marquee-fade--left" />
+        <div className="skills-marquee-fade skills-marquee-fade--right" />
+        <div className="skills-marquee-track">
+          {marqueeItems.map((tag, i) => (
+            <span key={`${tag}-${i}`} className="skills-marquee-tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Technologies;

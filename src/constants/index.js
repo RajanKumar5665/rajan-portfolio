@@ -3,8 +3,9 @@ import shopping from "../assets/projects/shopping.png";
 import hiring from "../assets/projects/hiring.png";
 import recipe from "../assets/projects/recipe.png";
 
-export const HERO_CONTENT = `Meet Rajan Mandal, a Full-Stack Developer passionate about building scalable web applications and backend systems. Skilled in the MERN stack and Data Structures & Algorithms (C++), he enjoys solving real-world problems through clean and efficient code while continuously learning modern technologies.
-~ ChatGPT`;
+export const RESUME_URL = "/rajan_resume_ats_144.pdf";
+
+export const HERO_CONTENT = `I build scalable MERN apps and solid backends — clean code, real products, and DSA in C++ when the problem gets interesting.`;
 
 export const ABOUT_TEXT = `Hi, I’m Rajan Mandal — a full-stack developer who enjoys building practical web apps, learning modern tools, and turning ideas into simple, polished products. I work mostly with the MERN stack and C++ for DSA, and I like creating software that feels fast, clean, and easy to use.`;
 

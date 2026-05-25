@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaGraduationCap } from "react-icons/fa";
+import SectionHeader from "./SectionHeader";
 
 const educationData = [
   {
@@ -54,25 +55,16 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="scroll-mt-24 py-16" ref={containerRef}>
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className="mb-16 text-center"
-      >
-        <span className="inline-block text-cyan-400 font-semibold mb-4">
-          Learning Paths
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent">
-          Education Timeline
-        </h2>
-        <div className="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" />
-      </motion.div>
+    <section id="education" className="scroll-mt-24 py-8 pb-24 section-shell" ref={containerRef}>
+      <SectionHeader
+        number="04.1"
+        label="// EDUCATION_DATA"
+        title="Education Timeline"
+        subtitle="Academic background and learning milestones."
+      />
 
-      <div className="relative max-w-3xl mx-auto pl-6 md:pl-10">
-        {/* Continuous Timeline vertical line */}
-        <div className="absolute left-[7px] md:left-[11px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-500 via-blue-500 to-indigo-500 opacity-20" />
+      <div className="relative max-w-3xl pl-8">
+        <div className="absolute left-[4px] top-2 bottom-2 cyber-timeline-line" />
 
         <motion.div
           variants={containerVariants}
@@ -87,41 +79,31 @@ const Education = () => {
               className="relative flex flex-col gap-2"
             >
               {/* Timeline dot/node with pulse effect */}
-              <div className="absolute -left-[24px] md:-left-[34px] top-6 z-10">
-                <motion.div
-                  className="w-4 h-4 rounded-full bg-cyan-400 border-4 border-black shadow-[0_0_12px_rgba(6,182,212,0.8)]"
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: idx * 0.25 + 0.3, type: "spring", stiffness: 200 }}
-                />
-              </div>
+              <div className="absolute -left-[26px] top-7 z-10 cyber-timeline-dot" />
 
-              {/* Glassmorphic timeline card */}
               <motion.div
-                whileHover={{ x: 8, scale: 1.01 }}
+                whileHover={{ x: 6 }}
                 transition={{ duration: 0.3 }}
-                className="group bg-gradient-to-br from-stone-900/60 to-stone-800/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-700/50 hover:border-cyan-500/50 shadow-xl hover:shadow-cyan-500/10 transition-all"
+                className="cyber-card group p-5 md:p-6"
               >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                      <FaGraduationCap size={18} />
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-3">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 border border-cyan-500/30 text-cyan-400 bg-cyan-500/5">
+                      <FaGraduationCap size={16} />
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="font-display text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {edu.title}
                     </h3>
                   </div>
-                  <span className="text-xs font-semibold text-cyan-400/90 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full self-start md:self-auto">
-                    {edu.period}
-                  </span>
+                  <span className="cyber-tag self-start shrink-0">{edu.period}</span>
                 </div>
-                
-                <p className="text-stone-400 mb-4 leading-relaxed">
+
+                <p className="font-mono text-[0.72rem] leading-relaxed text-stone-500 mb-4">
                   {edu.description}
                 </p>
 
-                <div className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <div className="cyber-tag text-emerald-400 border-emerald-500/30 inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-emerald-400 animate-pulse" />
                   {edu.result}
                 </div>
               </motion.div>

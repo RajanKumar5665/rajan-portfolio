@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 const hobbies = [
   {
@@ -65,21 +66,13 @@ const Hobbies = () => {
   };
 
   return (
-    <section id="hobbies" className="scroll-mt-24 py-16" ref={containerRef}>
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className="mb-16 text-center"
-      >
-        <span className="inline-block text-cyan-400 font-semibold mb-4">
-          Life Outside Coding
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent">
-          Hobbies & Interests
-        </h2>
-        <div className="mx-auto mt-4 h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" />
-      </motion.div>
+    <section id="hobbies" className="scroll-mt-24 py-8 pb-24 section-shell" ref={containerRef}>
+      <SectionHeader
+        number="04.2"
+        label="// HOBBIES_MODULE"
+        title="Hobbies & Interests"
+        subtitle="Life outside the terminal — balance fuels creativity."
+      />
 
       <motion.div
         variants={containerVariants}
@@ -92,30 +85,28 @@ const Hobbies = () => {
             key={index}
             variants={itemVariants}
             whileHover={{ y: -8, scale: 1.02 }}
-            className={`group relative bg-gradient-to-br from-stone-900/60 to-stone-800/40 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center text-center border border-stone-800/80 ${hobby.borderGlow} transition-all duration-300 shadow-lg hover:shadow-2xl`}
+            className="cyber-card group relative p-6 flex flex-col items-center text-center"
           >
-            {/* Custom glowing background behind the hobby card */}
             <div
-              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
               style={{
                 background: `radial-gradient(circle at center, ${hobby.glow}, transparent 70%)`,
               }}
             />
 
-            {/* Hover floating emoji */}
             <motion.div
-              className="text-5xl mb-6 relative z-10 select-none cursor-default"
-              whileHover={{ scale: 1.25, rotate: [0, -10, 10, 0] }}
+              className="text-4xl mb-4 relative z-10 select-none"
+              whileHover={{ scale: 1.2, rotate: [0, -8, 8, 0] }}
               transition={{ duration: 0.4 }}
             >
               {hobby.icon}
             </motion.div>
 
-            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-cyan-300 transition-colors relative z-10">
+            <h3 className="font-display text-base font-bold mb-2 text-white group-hover:text-cyan-300 transition-colors relative z-10">
               {hobby.title}
             </h3>
-            
-            <p className="text-stone-400 text-sm leading-relaxed relative z-10">
+
+            <p className="font-mono text-[0.68rem] leading-relaxed text-stone-500 relative z-10">
               {hobby.description}
             </p>
           </motion.div>

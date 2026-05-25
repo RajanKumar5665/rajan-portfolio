@@ -99,7 +99,7 @@ const CustomCursor = () => {
     <>
       {/* Outer Ring with Spring Smoothness */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyan-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className="fixed top-0 left-0 w-6 h-6 border border-cyan-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
         style={{
           x: cursorX,
           y: cursorY,
@@ -113,7 +113,7 @@ const CustomCursor = () => {
       />
       {/* Inner Dot with Precise Mouse Location */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-cyan-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 shadow-[0_0_8px_#22d3ee]"
         style={{
           x: mouseX,
           y: mouseY,

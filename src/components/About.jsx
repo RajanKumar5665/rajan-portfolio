@@ -86,17 +86,22 @@ const About = ({ onBackHome, onNavigateHomeSection }) => {
             className="space-y-8"
           >
             <motion.div variants={itemVariants} className="space-y-4">
-              <span className="inline-block text-cyan-400 font-semibold px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-sm">
-                About Me
+              <span className="hero-status-badge">
+                <span className="hero-status-dot" />
+                01 // ABOUT_MODULE
               </span>
-              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-white">
-                Hey! I&apos;m <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Rajan Mandal</span>,<br />a full stack engineer.
+              <h1 className="hero-name text-4xl md:text-5xl mt-4">
+                RAJAN
+                <br />
+                <span className="hero-name-accent">
+                  MANDAL<span className="hero-name-dot">.</span>
+                </span>
               </h1>
             </motion.div>
 
             <motion.div 
               variants={itemVariants} 
-              className="p-6 rounded-2xl bg-stone-900/40 backdrop-blur-sm border border-stone-800 space-y-6 text-stone-300 text-base md:text-lg leading-8"
+              className="cyber-card p-6 space-y-6 font-mono text-[0.78rem] leading-relaxed text-stone-400"
             >
               <p className="font-medium text-white">{ABOUT_TEXT}</p>
               <p>
@@ -115,7 +120,7 @@ const About = ({ onBackHome, onNavigateHomeSection }) => {
                   <motion.div
                     key={idx}
                     whileHover={{ y: -4 }}
-                    className="p-5 rounded-xl bg-stone-900/60 border border-stone-800 hover:border-cyan-500/20 transition-all flex flex-col gap-3"
+                    className="cyber-card p-5 flex flex-col gap-3"
                   >
                     <div className="p-2.5 rounded-lg bg-stone-800 w-fit text-xl">
                       {pr.icon}
